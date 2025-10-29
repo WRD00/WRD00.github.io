@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数字展销平台首页 - 秋分</title>
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Microsoft YaHei", sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* 头部区域样式 */
+        header {
+            background: linear-gradient(to right, #8B4513, #D2691E);
+            color: white;
+            padding: 20px 0;
+            border-bottom: 3px solid #8B4513;
+        }
+        
+        .header-content {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden; /* 清除浮动 */
+        }
+        
+        .logo {
+            float: left;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        nav {
+            float: right;
+            margin-top: 5px;
+        }
+        
+        nav ul {
+            list-style: none;
+        }
+        
+        nav ul li {
+            float: left;
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            transition: background 0.3s;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+        }
+        
+        /* 主体内容区样式 */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            overflow: hidden; /* 清除浮动 */
+        }
+        
+        /* 左侧栏样式 - 使用相对定位 */
+        .sidebar-left {
+            width: 20%;
+            float: left;
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: relative;
+            top: 5px; /* 相对定位调整 */
+        }
+        
+        .sidebar-left h3 {
+            color: #8B4513;
+            border-bottom: 2px solid #D2691E;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .category-list {
+            list-style: none;
+        }
+        
+        .category-list li {
+            margin-bottom: 10px;
+            padding: 8px;
+            border-left: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .category-list li:hover {
+            border-left-color: #D2691E;
+            background-color: #f9f9f9;
+            cursor: pointer;
+        }
+        
+        /* 中间内容区样式 */
+        .main-content {
+            width: 55%;
+            float: left;
+            margin: 0 2.5%;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .hot-recommend {
+            margin-bottom: 30px;
+        }
+        
+        .hot-recommend h3 {
+            color: #8B4513;
+            border-bottom: 2px solid #D2691E;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .book-list {
+            overflow: hidden; /* 清除浮动 */
+        }
+        
+        .book-item {
+            width: 30%;
+            float: left;
+            margin-right: 5%;
+            margin-bottom: 20px;
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            transition: transform 0.3s;
+        }
+        
+        .book-item:hover {
+            transform: translateY(-5px);
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .book-item:nth-child(3n) {
+            margin-right: 0;
+        }
+        
+        .book-cover {
+            width: 100%;
+            height: 150px;
+            background-color: #f0f0f0;
+            margin-bottom: 10px;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+        }
+        
+        .new-books {
+            margin-top: 30px;
+        }
+        
+        .new-books h3 {
+            color: #8B4513;
+            border-bottom: 2px solid #D2691E;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #f9f9f9;
+            color: #8B4513;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+            cursor: pointer;
+        }
+        
+        /* 右侧栏样式 */
+        .sidebar-right {
+            width: 20%;
+            float: right;
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .promotion {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: linear-gradient(to bottom, #FFE4B5, #F5DEB3);
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .promotion h4 {
+            color: #8B4513;
+            margin-bottom: 10px;
+        }
+        
+        .promotion p {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .promotion button {
+            background-color: #D2691E;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 3px;
+            transition: background 0.3s;
+        }
+        
+        .promotion button:hover {
+            background-color: #8B4513;
+            cursor: pointer;
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 30px;
+            clear: both; /* 清除浮动 */
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .sidebar-left, .main-content, .sidebar-right {
+                width: 100%;
+                float: none;
+                margin-bottom: 20px;
+            }
+            
+            .book-item {
+                width: 48%;
+                margin-right: 4%;
+            }
+            
+            .book-item:nth-child(2n) {
+                margin-right: 0;
+            }
+            
+            nav ul li {
+                float: none;
+                display: inline-block;
+                margin: 0 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部区域 -->
+    <header>
+        <div class="header-content">
+            <div class="logo">数字展销平台</div>
+            <nav>
+                <ul>
+                    <li><a href=" ">首页</a ></li>
+                    <li><a href="#">图书分类</a ></li>
+                    <li><a href="#">热门推荐</a ></li>
+                    <li><a href="#">新书上市</a ></li>
+                    <li><a href="#">促销活动</a ></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- 主体内容区 -->
+    <div class="container">
+        <!-- 左侧栏：图书分类导航 -->
+        <aside class="sidebar-left">
+            <h3>图书分类</h3>
+            <ul class="category-list">
+                <li>文学小说</li>
+                <li>经管励志</li>
+                <li>人文社科</li>
+                <li>生活艺术</li>
+                <li>科技科普</li>
+                <li>教育考试</li>
+                <li>少儿读物</li>
+                <li>外文原版</li>
+            </ul>
+        </aside>
+        
+        <!-- 中间栏：图书展示区 -->
+        <main class="main-content">
+            <!-- 热门推荐部分 -->
+            <section class="hot-recommend">
+                <h3>热门推荐</h3>
+                <div class="book-list">
+                    <div class="book-item">
+                        <div class="book-cover">书籍封面</div>
+                        <h4>秋分时节</h4>
+                        <p>作者：张三</p >
+                        <p>¥45.00</p >
+                    </div>
+                    <div class="book-item">
+                        <div class="book-cover">书籍封面</div>
+                        <h4>秋天的故事</h4>
+                        <p>作者：李四</p >
+                        <p>¥38.00</p >
+                    </div>
+                    <div class="book-item">
+                        <div class="book-cover">书籍封面</div>
+                        <h4>丰收的季节</h4>
+                        <p>作者：王五</p >
+                        <p>¥52.00</p >
+                    </div>
+                    <div class="book-item">
+                        <div class="book-cover">书籍封面</div>
+                        <h4>秋日私语</h4>
+                        <p>作者：赵六</p >
+                        <p>¥42.00</p >
+                    </div>
+                    <div class="book-item">
+                        <div class="book-cover">书籍封面</div>
+                        <h4>金色秋天</h4>
+                        <p>作者：钱七</p >
+                        <p>¥48.00</p >
+                    </div>
+                    <div class="book-item">
+                        <div class="book-cover">书籍封面</div>
+                        <h4>秋分养生</h4>
+                        <p>作者：孙八</p >
+                        <p>¥36.00</p >
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 新书上市部分 -->
+            <section class="new-books">
+                <h3>新书上市</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>书名</th>
+                            <th>作者</th>
+                            <th>出版社</th>
+                            <th>价格</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>秋分文化研究</td>
+                            <td>周九</td>
+                            <td>文艺出版社</td>
+                            <td>¥58.00</td>
+                        </tr>
+                        <tr>
+                            <td>秋天的诗与远方</td>
+                            <td>吴十</td>
+                            <td>文学出版社</td>
+                            <td>¥46.00</td>
+                        </tr>
+                        <tr>
+                            <td>秋分节气养生</td>
+                            <td>郑十一</td>
+                            <td>健康出版社</td>
+                            <td>¥39.00</td>
+                        </tr>
+                        <tr>
+                            <td>金色收获</td>
+                            <td>王十二</td>
+                            <td>农业出版社</td>
+                            <td>¥42.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+        
+        <!-- 右侧栏：促销信息 -->
+        <aside class="sidebar-right">
+            <div class="promotion">
+                <h4>秋分特惠</h4>
+                <p>全场图书8折起</p >
+                <p>活动时间：9.22-9.30</p >
+                <button>立即购买</button>
+            </div>
+            <div class="promotion">
+                <h4>新用户专享</h4>
+                <p>注册即送50元优惠券</p >
+                <button>立即注册</button>
+            </div>
+            <div class="promotion">
+                <h4>会员特权</h4>
+                <p>会员购书享额外9折优惠</p >
+                <button>了解详情</button>
+            </div>
+        </aside>
+    </div>
+    
+    <!-- 页脚 -->
+    <footer>
+        <p>© 2023 数字展销平台 - 秋分主题 | 版权所有</p >
+    </footer>
+</body>
+</html>
+        
+        <div class="copyright">
+            <p>© 2023 秋韵书苑 - 数字展销平台 | 秋分主题首页 | 版权所有</p >

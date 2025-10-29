@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鲁东大学大学生思想道德与法治教育</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", "Segoe UI", sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a5fb4, #3584e4);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        nav {
+            background-color: #2d7cd6;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav li {
+            margin: 0 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .hero {
+            padding: 60px 0;
+            background-color: white;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .hero-text {
+            flex: 1;
+        }
+        
+        .hero-image {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+        
+        .hero-image:hover img {
+            transform: scale(1.03);
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #1a5fb4;
+            font-size: 2rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, #1a5fb4, #3584e4);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .card:hover .card-img img {
+            transform: scale(1.1);
+        }
+        
+        .card-content {
+            padding: 25px;
+        }
+        
+        .card h3 {
+            color: #1a5fb4;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .quote-section {
+            background: linear-gradient(135deg, #1a5fb4, #3584e4);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .quote {
+            font-size: 1.5rem;
+            font-style: italic;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+        }
+        
+        .quote-author {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .article-section {
+            background-color: white;
+        }
+        
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .article-content p {
+            margin-bottom: 25px;
+            text-align: justify;
+        }
+        
+        .article-content h3 {
+            color: #1a5fb4;
+            margin: 40px 0 20px;
+            font-size: 1.6rem;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            height: 200px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        footer {
+            background-color: #2d3748;
+            color: white;
+            padding: 50px 0 20px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: #63b3ed;
+        }
+        
+        .footer-bottom {
+            padding-top: 20px;
+            border-top: 1px solid #4a5568;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+            }
+            
+            nav li {
+                margin: 5px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>大学生思想道德与法治教育</h1>
+            <p>塑造高尚品格，培育法治精神，成就卓越人生</p>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#importance">重要性</a></li>
+                <li><a href="#content">主要内容</a></li>
+                <li><a href="#practice">实践路径</a></li>
+                <li><a href="#resources">学习资源</a></li>
+                <li><a href="#about">关于我们</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h2>立德树人，法治为先</h2>
+                    <p>大学生思想道德与法治教育是高等教育的重要组成部分，是培养德智体美劳全面发展的社会主义建设者和接班人的关键环节。在新时代背景下，加强大学生思想道德与法治教育，对于落实立德树人根本任务、培养担当民族复兴大任的时代新人具有重大意义。</p>
+                    <p>通过系统的思想道德与法治教育，引导大学生树立正确的世界观、人生观、价值观，增强法治观念，提升道德素养，为成长成才奠定坚实的思想基础。</p>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="大学生在图书馆学习">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="importance">
+        <div class="container">
+            <h2 class="section-title">思想道德与法治教育的重要性</h2>
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="大学生讨论">
+                    </div>
+                    <div class="card-content">
+                        <h3>塑造健全人格</h3>
+                        <p>思想道德教育帮助大学生形成正确的价值取向和道德判断力，培养高尚的道德情操和健全的人格品质，为个人成长和社会发展奠定坚实基础。</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="法律书籍">
+                    </div>
+                    <div class="card-content">
+                        <h3>培育法治精神</h3>
+                        <p>法治教育增强大学生的法律意识和法治观念，使其能够自觉遵守法律法规，运用法律武器维护自身权益，成为社会主义法治的忠实崇尚者、自觉遵守者和坚定捍卫者。</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="校园生活">
+                    </div>
+                    <div class="card-content">
+                        <h3>促进全面发展</h3>
+                        <p>思想道德与法治教育与专业知识学习相辅相成，共同促进大学生的全面发展，培养既有扎实专业知识又有高尚道德情操和法治素养的复合型人才。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="quote-section">
+        <div class="container">
+            <blockquote class="quote">
+                "国无德不兴，人无德不立。法治兴则国兴，法治强则国强。大学生作为国家未来的栋梁，必须把思想道德建设摆在首位，把法治精神内化于心、外化于行。"
+            </blockquote>
+            <p class="quote-author">—— 习近平</p>
+        </div>
+    </section>
+    
+    <section id="content" class="article-section">
+        <div class="container">
+            <h2 class="section-title">思想道德与法治教育的主要内容</h2>
+            <div class="article-content">
+                <h3>理想信念教育</h3>
+                <p>理想信念是人生的精神支柱和前进动力。大学生正处于世界观、人生观、价值观形成的关键时期，加强理想信念教育，引导他们树立共产主义远大理想和中国特色社会主义共同理想，坚定道路自信、理论自信、制度自信、文化自信，自觉把个人理想融入国家发展伟业，在实现中国梦的伟大实践中创造自己的精彩人生。</p>
+                
+                <h3>社会主义核心价值观教育</h3>
+                <p>社会主义核心价值观是当代中国精神的集中体现，凝结着全体人民共同的价值追求。大学生思想道德教育要以培育和践行社会主义核心价值观为主线，将其融入教育教学全过程，引导大学生深刻理解"富强、民主、文明、和谐"的国家价值目标，自觉遵循"自由、平等、公正、法治"的社会价值取向，积极践行"爱国、敬业、诚信、友善"的个人价值准则。</p>
+                
+                <h3>中华优秀传统文化教育</h3>
+                <p>中华优秀传统文化是中华民族的精神命脉，是涵养社会主义核心价值观的重要源泉。通过开展中华优秀传统文化教育，引导大学生深入了解中华文化的悠久历史和丰富内涵，汲取讲仁爱、重民本、守诚信、崇正义、尚和合、求大同的思想精华，增强文化自信和民族自豪感，实现中华优秀传统文化的创造性转化和创新性发展。</p>
+                
+                <h3>法治观念教育</h3>
+                <p>法治观念教育是培养大学生法治素养的核心内容。要通过系统的法律知识学习，使大学生了解中国特色社会主义法律体系，掌握宪法和基本法律知识，理解法律面前人人平等、依法治国、公正司法等法治理念，养成自觉守法、遇事找法、解决问题靠法的思维习惯和行为方式。</p>
+            </div>
+            
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="校园风景">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="大学生课堂">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="图书馆学习">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="小组讨论">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="practice">
+        <div class="container">
+            <h2 class="section-title">思想道德与法治教育的实践路径</h2>
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="课堂教学">
+                    </div>
+                    <div class="card-content">
+                        <h3>课堂教学主渠道</h3>
+                        <p>充分发挥思政课在大学生思想道德与法治教育中的主渠道作用，创新教学方法，增强教学吸引力和感染力，使思政课成为学生真心喜爱、终身受益的课程。</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="校园文化">
+                    </div>
+                    <div class="card-content">
+                        <h3>校园文化建设</h3>
+                        <p>通过丰富多彩的校园文化活动，营造积极向上、格调高雅的校园文化氛围，使大学生在潜移默化中接受思想道德与法治教育的熏陶。</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1551830416-5ed6c272bc53?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="社会实践">
+                    </div>
+                    <div class="card-content">
+                        <h3>社会实践活动</h3>
+                        <p>组织大学生参加志愿服务、社会调查、专业实习等社会实践活动，在实践中增长才干、了解国情、服务社会，增强社会责任感和历史使命感。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>联系我们</h3>
+                    <p>地址：烟台市鲁东大学</p>
+                    <p>邮箱：555@ldu.cn
+                        
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>快速链接</h3>
+                    <p><a href="#importance" style="color: #a0aec0;">教育重要性</a></p>
+                    <p><a href="#content" style="color: #a0aec0;">主要内容</a></p>
+                    <p><a href="#practice" style="color: #a0aec0;">实践路径</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>关注我们</h3>
+                    <p>微信公众号：鲁东大学大学思政教育</p>
+                    <p>微博：@鲁东大学大学生思想道德与法治</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 鲁东大学大学生思想道德与法治教育研究中心 版权所有</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
