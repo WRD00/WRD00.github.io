@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>数字展销平台首页--秋分</title>
     <style>
-
         * {
             margin: 0;
             padding: 0;
@@ -54,6 +53,10 @@
             font-size: 32px;
         }
         
+        nav {
+            position: relative;
+        }
+        
         nav ul {
             display: flex;
             list-style: none;
@@ -77,6 +80,36 @@
         nav ul li a:hover {
             background-color: rgba(255, 255, 255, 0.2);
             transform: translateY(-2px);
+        }
+        
+        /* 新增的下拉筛选菜单样式 */
+        .filter-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            z-index: 100;
+        }
+        
+        .filter-menu label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .filter-menu select {
+            width: 150px;
+            padding: 6px 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        nav ul li:hover .filter-menu {
+            display: block;
         }
         
         .main-content {
@@ -166,10 +199,11 @@
             width: calc(25% - 15px);
             background: #f9f9f9;
             border-radius: 8px;
-            overflow: hidden;
+            overflow: hidden; /* 内容溢出处理 */
             transition: all 0.3s ease;
             cursor: pointer;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            position: relative;
         }
         
         .book-item:hover {
@@ -177,10 +211,16 @@
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
         }
         
+        /* 新增的图片放大预览样式 */
         .book-cover {
             height: 180px;
             background-size: cover;
             background-position: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .book-item:hover .book-cover {
+            transform: scale(1.1);
         }
         
         .book-info {
@@ -379,11 +419,37 @@
                 width: 100%;
             }
         }
+        
         .logo img {
-         width: 40px; 
-         height: 40px; 
-         object-fit: contain; 
-        margin-right: 10px; 
+            width: 40px; 
+            height: 40px; 
+            object-fit: contain; 
+            margin-right: 10px; 
+        }
+        
+        /* 显示与隐藏效果 */
+        .hide-display {
+            display: none;
+        }
+        
+        .hide-visibility {
+            visibility: hidden;
+        }
+        
+        .opacity-example {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .opacity-example:hover {
+            opacity: 1;
+        }
+        
+        .rgba-example {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
         }
     </style>
 </head>
@@ -396,7 +462,32 @@
             <nav>
                 <ul>
                     <li><a href="#">首页</a></li>
-                    <li><a href="#">图书分类</a></li>
+                    <li>
+                        <a href="#">图书分类</a>
+                        <div class="filter-menu">
+                            <label for="category-filter">按分类筛选:</label>
+                            <select id="category-filter">
+                                <option value="all">全部</option>
+                                <option value="literature">文学经典</option>
+                                <option value="science_fiction">科幻小说</option>
+                                <option value="history">历史传奇</option>
+                                <option value="biography">人物传记</option>
+                                <option value="children">儿童文学</option>
+                                <option value="biology">生物研究</option>
+                                <option value="cooking">美食制作</option>
+                                <option value="technology">科学技术</option>
+                                <option value="psychology">心理分析</option>
+                            </select>
+                            <br>
+                            <label for="price-filter">按价格筛选:</label>
+                            <select id="price-filter">
+                                <option value="all">全部</option>
+                                <option value="low">低价</option>
+                                <option value="medium">中价</option>
+                                <option value="high">高价</option>
+                            </select>
+                        </div>
+                    </li>
                     <li><a href="#">热门推荐</a></li>
                     <li><a href="#">新书上市</a></li>
                     <li><a href="#">秋季大促</a></li>
@@ -454,87 +545,3 @@
                                 <div class="book-author">曹雪芹</div>
                                 <div class="book-price">¥89.9</div>
                             </div>
-                        </div>
-                        <div class="book-item">
-                            <div class="book-cover" style="background-image: url('../image/鲁滨逊漂流记.jpeg');"></div>
-                            <div class="book-info">
-                                <div class="book-title">鲁滨逊漂流记</div>
-                                <div class="book-author">丹尼尔·笛福</div>
-                                <div class="book-price">¥79.9</div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="new-books">
-                    <div class="section-title">
-                        <h2>新书上市</h2>
-                        <a href="#">更多 &gt;</a>
-                    </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>书名</th>
-                                <th>作者</th>
-                                <th>出版社</th>
-                                <th>价格</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="book-name">百年孤独</td>
-                                <td>加西亚·马尔克斯</td>
-                                <td>南海出版公司</td>
-                                <td>¥59.9</td>
-                            </tr>
-                            <tr>
-                                <td class="book-name">时间简史</td>
-                                <td>史蒂芬·霍金</td>
-                                <td>湖南科学技术出版社</td>
-                                <td>¥49.9</td>
-                            </tr>
-                            <tr>
-                                <td class="book-name">小王子</td>
-                                <td>安托万·德·圣埃克苏佩里</td>
-                                <td>人民文学出版社</td>
-                                <td>¥39.9</td>
-                            </tr>
-                            <tr>
-                                <td class="book-name">三体</td>
-                                <td>刘慈欣</td>
-                                <td>重庆出版社</td>
-                                <td>¥69.9</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </section>
-            </main>
-
-            <aside class="promotion">
-                <h2>促销活动</h2>
-                <div class="promo-item">
-                    <h3>会员活动</h3>
-                    <p>新用户进会即送一本小说</p>
-                    <a href="#" class="btn">立即入会</a>
-                </div>
-                <div class="promo-item">
-                    <h3>秋季促销</h3>
-                    <p>限时30天购书6折</p>
-                    <a href="#" class="btn">立即购买</a>
-                </div>
-                <div class="promo-item">
-                    <h3>购书满减</h3>
-                    <p>满199减19，满299减39</p>
-                    <a href="#" class="btn">查看详情</a>
-                </div>
-            </aside>
-        </div>
-    </div>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-        </div>
-    </footer>
-</body>
-</html>
